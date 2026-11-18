@@ -110,7 +110,7 @@ This additional dataset from the Alcoholic Beverage and Cannabis Administration:
 
 **i.** ANC: Both datasets have an ANC field, which serves as a direct shared identifier. A shared identifier allows us to put each area's crime count and nightlife establish into a row, so we can compare whether areas with high late-night are also areas that contain nightclubs and bars. The formats for the values differ, but after removing the prefix ANC, all 46 ANCs in the crime file have a match. 
 
-**ii.** Ward: DC is divided into eight wards, this is listed in each the crime and licensed business dataset. With a wider range, this allows us to evaluate the correlation of late-night crimes and establishments that contain entertainment and alcoholic beverages. Analyzing wards makes it clearer and easier to understand, we can simply see whether a ward with the most nightlife also has the most late night crime. Although eight wards may be too few for detailed analyzes and each ward combines busy nightlife and quiet areas, we can ulitize wards to quickly check on our 
+**ii.** Ward: DC is divided into eight wards, this is listed in each the crime and licensed business dataset. With a wider range, this allows us to evaluate the correlation of late-night crimes and establishments that contain entertainment and alcoholic beverages. Analyzing wards makes it clearer and easier to understand, we can simply see whether a ward with the most nightlife also has the most late night crime. Although eight wards may be too few for detailed analyzes and each ward combines busy nightlife and quiet areas, we can ulitize wards to quickly check on ours.
 
 ---
 
