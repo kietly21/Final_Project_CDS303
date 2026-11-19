@@ -11,4 +11,4 @@ Second supplementary dataset: https://catalog.data.gov/dataset/metro-station-ent
 ## 2. Collect Data
    ACS
 
-## 3. Spatial Join (prof will give us the py code for this later)
+## 3. Spatial Join
