@@ -42,20 +42,21 @@ Timestamps are in Coordinated Universal Time (UTC), so tracts are converted to E
 | share_midnight | Started 23:00 - 6:59 |
 | share_weekend | Started Saturday or Sunday|
 
-Time-of-day and weekend shares 
+Time-of-day and weekend shares are reported only for incidents reported within 1 day to reduce possible bias from reporting delays of time information. Data on time-of-day and weekend shares cover 17.998 incidents. timing_n states the number of incidents used to compute time-of-day and weekend shares for each tract. Time-of-day and weekend shares may underrepresent offenses that are more likely to be noticed later.
+
+### Alcohol Licenses (License -> Tract)
+2329 records -> 2,306 active or issued records, after removing duplicate records using license number -> 2,075 venue licenses, not including Internet, Third-Party Delivery, Caterer, Wholesaler, and Manufacturer licenses, all of which are likely offices or supply stores. All 2,075 venue licenses are in census tracts. Informative provided by census tract includes total licenses, bar and nightclub licenses, restaurant licenses, retail liqor licenses, and licenses with entertainment and dancing. Rates are computed per square kilometer of land area and per capita rates are not calculated because of downtown tracts having very few residents.
+
+### Metro Entrances (Entrance -> Tract)
+All 113 entrances are in census tracts (45 with entrances). Longitude and latitude data aren't available for Metro data. X and Y coordinates for Metro data are in meters using Web Mercator projection; this system is defined for Metro data, and a projection to longitude and latitude is applied during the join. 
+
+### ACS (Tract -> Tract)
+ACS table has one row per tract, so aggregation is not needed. We used its ACS columns (population, density, median household income, median age, poverty rate, renter share, transit-commute share). 
 
 
 
 
 
-
-   Create a table with all the census tracts and create new variables, like: Share of Violent crimes, Theft, Property damage, or etc.
-   Can also include temporal variables, like: Times: Evening, Midnight, Daytime.
-   Create an Excel file that includes all ~200+ census tracts.
-New supplementary dataset: https://opendata.dc.gov/datasets/DCGIS::alcohol-license-business-locations/about
-
-Second supplementary dataset: https://catalog.data.gov/dataset/metro-station-entrances-in-dc
-- This connects to our dataset
 
 
   
