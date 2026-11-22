@@ -1,3 +1,15 @@
+# Crime Analytics in Washington, D.C.
+**Team:** Myles Lewis, Kiet Ly · CDS 303 Data Mining
+
+Explainable cluster analysis of Washington, D.C. crime data: preprocessing → dimensionality reduction (principal component analysis, PCA) → clustering → classification for explainability. This repository holds Final Project 2: data integration, research question refinement and PCA of 2025 DC crime, alcohol license and Metro entrance data at the census tract level.
+
+## Contents of the report
+1. [Integrating Primary and Supplementary Datasets](#1-integrating-primary-and-supplementary-datasets)
+2. [Refine the Research Question and Identify an Audience](#2-refine-the-research-question-and-identify-an-audience)
+3. [Data Preparation for PCA](#3-data-preparation-for-pca)
+4. [PCA](#4-pca)
+5. [Limitations and Next Steps](#5-limitations-and-next-steps)
+
 ## 1. Integrating Primary and Supplementary Datasets
 Our main dataset is the 2025 DC crime incident file. We integrated it with two supplementary datasets: Alcohol License Business Locations & Metro Station Entrances.
 
