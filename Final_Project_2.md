@@ -76,10 +76,12 @@ ACS table has one row per tract, so aggregation is not needed. We used its ACS c
 | Late-night heavy crime | Nightlife type | Late-night crime without venues |
 | Daytime-dominant crime | Venues without late-night crime | Daytime-pattern tracts |
 
+### Differences
 
-
-
-## 3. Spatial Join
+| Differences | Variables | Question |
+| Types of Crime | Share of violent incidents; share of gun incidents; offense mix | Is late-night crime in nightlife-type tracts more violent, or gun-related, than daytime-dominant crime? |
+| Neighborhood characteristics | Household income, median age, transit-commute share | Do nightlife-type tracts vary in who lives there from daytime-dominant tracts? |
+| Late-night crime with venues | Same variables in the differences above, late-night crime without venues vs. nightlife-type group | If late-night crime occurs where there are fewer venues, how do these tracts differ from nightlife-type tracts. |
 
 
 ## 3. Data Preparation for PCA
