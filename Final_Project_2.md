@@ -4,8 +4,12 @@ Our main dataset is the 2025 DC crime incident file. We integrated it with two s
 | Dataset | Provider/Publisher | Unit | Role |
 |---|---|---|---|
 | Crime Incidents in 2025 | DC Metropolitan Police Department | 1 reported incident | Time and offense mix of crime |
-| Alcohol License Business Locations |  |---|---|
+| Alcohol License Business Locations | Alcoholic Beverage and Cannabis Administration | 1 license | Nightlife measures |
+| DC Metro Station Entrances | Washington Metropolitan Area Transit Authority | 1 station entrance |Transport access |
+| Census Tracts in 2020 | DC Open Data |1 tract ploygon | Geography for the combinations, 2020 population, housing units, and land area |
+|---|---|---|---|
 
+### 2
    Create a table with all the census tracts and create new variables, like: Share of Violent crimes, Theft, Property damage, or etc.
    Can also include temporal variables, like: Times: Evening, Midnight, Daytime.
    Create an Excel file that includes all ~200+ census tracts.
