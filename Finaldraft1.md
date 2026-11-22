@@ -32,7 +32,7 @@ Variables were prepared in the variable preparation notebook (Kiet Ly). See [DC_
 
 ### 4.2 Component Loadings
 
-![Scree plot](figures/fig1_scree.png) · ![Cumulative variance](figures/fig2_cumulative_variance.png)
+![Scree plot](figures/Screeplot.png) · ![Cumulative variance](figures/CumulativeExplainedVariance.png)
 
 Loadings represent the correlation between variables and PC1/PC2. [All loadings](outputs/pca_loadings_all.csv), [Retained loadings](outputs/pca_loadings_retained.csv).
 
@@ -58,7 +58,7 @@ PC1 and PC2 are orthogonal. The level of alcohol and transport activity in a tra
 
 ### 4.3 Biplot
 
-![PC1 vs PC2 biplot](figures/fig4_biplot_pc1_pc2.png)
+![PC1 vs PC2 biplot](figures/BiplotsPC1PC2.png)
 
 Each dot corresponds to a tract. The colour indicates proportion of violent crimes in the tract (not an input to the PCA, included for interpretation only). Arrows indicate variable loadings. Arrows have been scaled up proportionally to increase clarity. Positively correlated variables have arrows in the same direction.
 
