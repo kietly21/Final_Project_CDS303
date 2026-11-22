@@ -53,6 +53,13 @@ All 113 entrances are in census tracts (45 with entrances). Longitude and latitu
 ### ACS (Tract -> Tract)
 ACS table has one row per tract, so aggregation is not needed. We used its ACS columns (population, density, median household income, median age, poverty rate, renter share, transit-commute share). 
 
+### 4. Checks on the merge
+
+- **No duplication:** The merged dataset contains 206 rows, each with a unique GEOID. Each incident, licence and metro entry point was matched to at most one tract polygon. The ACS contains one entry per tract, therefore no rows will be duplicated by joining using GEOID.
+- **Same spatial units:** All datasets have been merged to 2020 census tracts. In the crimes dataset, the CENSUS_TRACT column was not used since it does not match these boundaries. In the metro entries dataset, WGS84 co-ordinates were converted to latitude and longitude prior to merging. The population figures in the ACS match well with those in the 2020 census (r=0.92; median difference 7.5%), meaning that they likely refer to the same tracts.
+- **Same time period:** Data covers different time periods. Crime data is from 2025, ACS is from 2020-2024, alcohol licences are from a snapshot in May 2026, and metro entry points are from 2016. As crime data is specific to 2025, and licence and station data changes very slowly, we can consider licence, station and ACS data as a snapshot of the same tracts. This is a limitation.
+
+ 
 ## 2. Refine the Research Question and Identify an Audience
 
 ### 1. Revise Research Question
