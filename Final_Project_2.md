@@ -120,6 +120,8 @@ Variables were prepared in the variable preparation notebook. See [Myles_Kiet_DC
 | PC3 | 1.01 | 14.4% | 75.4% | 1.13 |
 | PC4 | 0.86 | 12.3% | 87.7% | 1.05 |
 | PC5 | 0.52 | 7.4% | 95.1% | 0.97 |
+| PC6 | 0.22 | 3.1% | 98.2% | 0.89 |
+| PC7 | 0.13 | 1.8% | 100.0% | 0.81 |
 
 ![Scree plot](figures/Screeplot.png)
 
