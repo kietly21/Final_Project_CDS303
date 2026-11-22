@@ -135,6 +135,17 @@ Variables were prepared in the variable preparation notebook. See [Myles_Kiet_DC
 
 Loadings represent the correlation between variables and PC1/PC2.
 
+| Variable | PC1 | PC2 |
+|---|---|---|
+| Evening proportion | -0.12 | +0.81 |
+| Midnight proportion | +0.31 | -0.79 |
+| Weekend proportion | +0.33 | -0.11 |
+| Total licenses per km² (log) | +0.91 | +0.23 |
+| Bar/nightclub licenses per km² (log) | +0.92 | +0.11 |
+| Dance licenses per km² (log) | +0.90 | +0.07 |
+| Metro entrances per km² (log) | +0.46 | +0.03 |
+
+
 | Component | High Loadings | Interpretation |
 |---|---|---|
 | PC1 (41.5%) | Bar/nightclub (per km²) (+0.92), total licenses (+0.91), dance licenses (+0.90), Metro (+0.46) | High density of alcohol licenses and Metro stations (intense night-life/commercial activity). Time of crime has low loadings (Weekend: +0.33, Midnight: +0.31). |
