@@ -1,6 +1,6 @@
 ## 3. Data Preparation for PCA
 
-Variables were prepared in the variable preparation notebook (Kiet Ly). See [DC_Crime_PCA.ipynb](DC_Crime_PCA.ipynb).
+Variables were prepared in the variable preparation notebook (Kiet Ly). See [Myles_Kiet_DC_Crime_PCA.ipynb](DC_Crime_PCA.ipynb).
 
 - **Variables removed:** GEOID, TRACT, NAME. No categorical variables so no encoding required.
 - **Filtering:** Tracts must have at least 30 well timed incidents. 32 tracts did not meet this criteria, leaving 174 tracts. No missing data for the PCA variables. No imputation required.
