@@ -3,6 +3,12 @@
 
 Explainable cluster analysis of Washington, D.C. crime data: preprocessing → dimensionality reduction (principal component analysis, PCA) → clustering → classification for explainability. This repository holds Final Project 2: data integration, research question refinement and PCA of 2025 DC crime, alcohol license and Metro entrance data at the census tract level.
 
+Other files:
+
+[Kiet_Myles_DC_Crime_CensusTract_SpatialJoin.ipynb](other%20files/Kiet_Myles_DC_Crime_CensusTract_SpatialJoin.ipynb)
+
+[DC_Crime_PCA.ipynb](other%20files/DC_Crime_PCA.ipynb)
+
 ## Contents of the report
 1. [Integrating Primary and Supplementary Datasets](#1-integrating-primary-and-supplementary-datasets)
 2. [Refine the Research Question and Identify an Audience](#2-refine-the-research-question-and-identify-an-audience)
