@@ -27,10 +27,10 @@ Our main dataset is the 2025 DC crime incident file. We integrated it with two s
 | Census Tracts in 2020 | DC Open Data |1 tract polygon | Geography for the combinations, 2020 population, housing units, and land area |
 |---|---|---|---|
 
-### 1. What each row represents
+### 1.1 What each row represents
 In the integrated dataset, one row represents one 2020 census tract in Washington, D.C. There are 206 rows, and every variable defines that tract's: timing and combination of its 2025 crime, the number of alcohol licenses and Metro entrances within it, and its population, ACS demographics, and land area. 
 
-### 2. Identifiers that connect the datasets
+### 1.2 Identifiers that connect the datasets
 The datasets are connected through the location where:
 
 - Each license, incident, Metro entrance is allocated to a tract by spatial join against the 2020 tract polygons.
@@ -39,7 +39,7 @@ The datasets are connected through the location where:
 
 The crime file's CENSUS_TRACT column is not used because incidents within a tract polygon only agree with the 2020 polygons for about 83% and for 77 of 206 tracts. Additionally, the incident count varies by more than 20% between the two methods. Since the alcohol, Metro, population, and ACS data all lie on the 2020 polygons, and using it would merge conflicting geographic units.
 
-### 3. Aggregation analyze needed for merging
+### 1.3 Aggregation analyze needed for merging
 
 Crime (incident -> tract, cleaning the dataset)
 | Step | Rows removed | Rows left |
@@ -48,7 +48,7 @@ Crime (incident -> tract, cleaning the dataset)
 | Incidents started outside 2025 | 216 | 23,937 |
 | Incidents outside every tract polygon | 101 | 23,836 |
 
-### Time:
+### 1.4 Time:
 Timestamps are in Coordinated Universal Time (UTC), so tracts are converted to Eastern time. Shift column is excluded since it follows report time, not incident time.
 
 | Variable | Meaning |
@@ -62,16 +62,16 @@ Timestamps are in Coordinated Universal Time (UTC), so tracts are converted to E
 
 Time-of-day and weekend shares are reported only for incidents reported within 1 day to reduce possible bias from reporting delays of time information. Data on time-of-day and weekend shares cover 17.998 incidents. timing_n states the number of incidents used to compute time-of-day and weekend shares for each tract. Time-of-day and weekend shares may underrepresent offenses that are more likely to be noticed later.
 
-### Alcohol Licenses (License -> Tract)
+### 1.5 Alcohol Licenses (License -> Tract)
 2329 records -> 2,306 active or issued records, after removing duplicate records using license number -> 2,075 venue licenses, not including Internet, Third-Party Delivery, Caterer, Wholesaler, and Manufacturer licenses, all of which are likely offices or supply stores. All 2,075 venue licenses are in census tracts. Informative provided by census tract includes total licenses, bar and nightclub licenses, restaurant licenses, retail liqor licenses, and licenses with entertainment and dancing. Rates are computed per square kilometer of land area and per capita rates are not calculated because of downtown tracts having very few residents.
 
-### Metro Entrances (Entrance -> Tract)
+### 1.6 Metro Entrances (Entrance -> Tract)
 All 113 entrances are in census tracts (45 with entrances). Longitude and latitude data aren't available for Metro data. X and Y coordinates for Metro data are in meters using Web Mercator projection; this system is defined for Metro data, and a projection to longitude and latitude is applied during the join. 
 
-### ACS (Tract -> Tract)
+### 1.7 ACS (Tract -> Tract)
 ACS table has one row per tract, so aggregation is not needed. We used its ACS columns (population, density, median household income, median age, poverty rate, renter share, transit-commute share). 
 
-### 4. Checks on the merge
+### 1.8 Checks on the merge
 
 - **No duplication:** The merged dataset contains 206 rows, each with a unique GEOID. Each incident, licence and metro entry point was matched to at most one tract polygon. The ACS contains one entry per tract, therefore no rows will be duplicated by joining using GEOID.
 - **Same spatial units:** All datasets have been merged to 2020 census tracts. In the crimes dataset, the CENSUS_TRACT column was not used since it does not match these boundaries. In the metro entries dataset, WGS84 co-ordinates were converted to latitude and longitude prior to merging. The population figures in the ACS match well with those in the 2020 census (r=0.92; median difference 7.5%), meaning that they likely refer to the same tracts.
@@ -80,13 +80,13 @@ ACS table has one row per tract, so aggregation is not needed. We used its ACS c
  
 ## 2. Refine the Research Question and Identify an Audience
 
-### 1. Revise Research Question
+### 2.1 Revise Research Question
 
 #### Current Research Question: Are there "nightlife" type areas where crime concentrates late at night, and how do they differ from areas with daytime-dominant crime?
 
 #### Refined Research Question: Across Washington, D.C's census tracts, are there "nightlife-type" tracts, where a large amount of 2025 crime starts late at night (11:00 PM to 7:00 AM) and which also have a high concentration of bars, nightclubs, alcohol licensed venues, and Metro entrances, and how do they differ from daytime-dominant tracts in the kind of crime and in neighborhood characteristics?
 
-### Patterns
+### 2.2 Patterns
 
 | Pattern | Aspects looked at | What it informs us |
 |---|---|---|
@@ -94,19 +94,38 @@ ACS table has one row per tract, so aggregation is not needed. We used its ACS c
 | Timing pattern separate from venues: late-night vs. daytime crime creates its own dimension. | If the timing variables load on a component where the venue concentrations have only one factor and have loading near 0. | Late-night crime in a few tracts is not clarified by nightlife venues, so an explanation revolving around venues does not fit those tracts.|
 | What kind of variables drive the variation among tracts | Explained variance of each aspect and the strongest loadings | If the timing, venue concentration, or both are considered, how tracts vary, and how many dimensions are required to explain them. |
 
-### Tracts to compare:
+### 2.3 Tracts to compare:
 
 |  | Many Venues | Fewer venues |
 |---|---|---|
 | Late-night heavy crime | Nightlife type | Late-night crime without venues |
 | Daytime-dominant crime | Venues without late-night crime | Daytime-pattern tracts |
 
-### Differences
+### 2.4 Differences
 
 | Differences | Variables | Question |
 | Types of Crime | Share of violent incidents; share of gun incidents; offense mix | Is late-night crime in nightlife-type tracts more violent, or gun-related, than daytime-dominant crime? |
 | Neighborhood characteristics | Household income, median age, transit-commute share | Do nightlife-type tracts vary in who lives there from daytime-dominant tracts? |
 | Late-night crime with venues | Same variables in the differences above, late-night crime without venues vs. nightlife-type group | If late-night crime occurs where there are fewer venues, how do these tracts differ from nightlife-type tracts. |
+
+### 2.5 Audience
+
+#### Primary Audience: 
+
+- The Mayor's Office of Nightlife and Culture (MONC) is an executive branch agency that acts as a middleman between nightlife venues, residents, and District agencies, and the commission informs the Mayor, Council, and office. With this research, they will understand where late-night crime and nightlife venues intersect, and where late-night crime is high, though establishments are few, so they can determine where to set venues, residents, and agencies.
+
+- Advisory Neighborhood Commission (ANC) commissioners, specifically in areas that encompass licensed establishments. ANCs have the power to protest liquor licenses and renewals, and the Alcoholic Beverage Control Board is needed to give significant influence to recommendations. ANCs can also compromise agreements that govern the management of a venue. With our research, they are given the pattern to observe if crimes are correlated to areas that have a high amount of alcohol-licensed establishments. They have the authority to decide whether venues are given alcohol licenses.
+
+### 2.6 Relevance with our Primary Audience
+- ANC commissioners: Licensing decisions are produced one venue at a time, and commissioners often listen to residents' concerns. Understanding if late-night crime in the area is the kind of pattern that establishments' conditions could address. They have information that are mostly comprised on personal reports, not researched comparison against if late-night crime is linked to licensed venues. Our analysis displays how their tract's late-night share, violent share, and establishment concentration compare with similar tracts across others.
+
+- Mayor's Office of Nightlife and Culture: Their responsibility is to bring establishments, residents, and agencies together; however, due to resources, there are many limitations on where to place these community stakeholders. MONC needs a method to differentiate neighborhoods where late-night crime and nightlife establishments overlap from communities where late-night crime is high, but venues are few. Using our research, it helps MONC separate the two cases. 
+
+### 2.7 Potential use
+
+- ANC decision on new nightclubs or renewals. The commissioner may view how tracts with similar establishment concentration and demographics compare on late-night and violent-crime share. If similar tracts display a higher late-night violent share, this may assist additional debate for conditions like security measures or operating hours. If they do not, commissioners may want to prioritize other problems.
+  
+- The Office of Nightlife and Culture is deciding where to arrange stakeholder discussions. Census tracts with high late-night crime and high establishment densities could focus on discussions covering residents, involving agencies, and venue owners. Regions with high late-night crime share but fewer licensed establishments may demonstrate that other factors may need to be prioritized.
 
 
 ## 3. Data Preparation for PCA
