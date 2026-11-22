@@ -34,7 +34,7 @@ Variables were prepared in the variable preparation notebook (Kiet Ly). See [Myl
 
 ![Scree plot](figures/Screeplot.png) · ![Cumulative variance](figures/CumulativeExplainedVariance.png)
 
-Loadings represent the correlation between variables and PC1/PC2. [All loadings](outputs/pca_loadings_all.csv), [Retained loadings](outputs/pca_loadings_retained.csv).
+
 
 | Component | High Loadings | Interpretation |
 |---|---|---|
@@ -71,7 +71,7 @@ No clusters are identified from the PCA. Although some grouping of points appear
 
 ### 4.4 Robustness
 
-Changing the minimum number of incidents in a tract to 20 or 50, removing the outlier or removing dance license density has very little effect on the results (PC1 and PC2). The loadings have high congruence (0.97-1.00). A PCA using just time of incidents results in a completely different pattern and is not comparable. Adding the license variables therefore provides additional information. [Full table](outputs/sensitivity.csv).
+Changing the minimum number of incidents in a tract to 20 or 50, removing the outlier or removing dance license density has very little effect on the results (PC1 and PC2). The loadings have high congruence (0.97-1.00). A PCA using just time of incidents results in a completely different pattern and is not comparable. Adding the license variables therefore provides additional information. 
 
 ### 4.5 Extended Analysis (16 variables)
 
