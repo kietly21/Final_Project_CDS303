@@ -1,6 +1,11 @@
 ## 1. Integrating Primary and Supplementary Datasets
 Our main dataset is the 2025 DC crime incident file. We integrated it with two supplementary datasets: Alcohol License Business Locations & Metro Station Entrances.
 
+| Dataset | Provider/Publisher | Unit | Role |
+|---|---|---|---|
+| Crime Incidents in 2025 | DC Metropolitan Police Department | 1 reported incident | Time and offense mix of crime |
+| Alcohol License Business Locations |  |---|---|
+
    Create a table with all the census tracts and create new variables, like: Share of Violent crimes, Theft, Property damage, or etc.
    Can also include temporal variables, like: Times: Evening, Midnight, Daytime.
    Create an Excel file that includes all ~200+ census tracts.
