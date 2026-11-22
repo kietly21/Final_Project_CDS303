@@ -3,7 +3,7 @@
 Variables were prepared in the variable preparation notebook (Kiet Ly). See [Myles_Kiet_DC_Crime_PCA.ipynb](DC_Crime_PCA.ipynb).
 
 - **Variables removed:** GEOID, TRACT, NAME. No categorical variables so no encoding required.
-- **Filtering:** Tracts must have at least 30 well timed incidents. 32 tracts did not meet this criteria, leaving 174 tracts. No missing data for the PCA variables. No imputation required.
+- **Filtering:** Tracts must have at least 30 well timed incidents. 32 tracts did not meet this criterion, leaving 174 tracts. No missing data for the PCA variables. No imputation required.
 - **Variables (7):**
 
 | Domain | Variable | Transformations |
@@ -20,7 +20,7 @@ Variables were prepared in the variable preparation notebook (Kiet Ly). See [Myl
 
 ### 4.1 Variance explained
 
-| PC | Eigenvalue | % Variance | % Cumulative | % Variance under random data (p=95%) |
+| PC | Eigenvalue | % Variance | % Cumulative | Eigenvalue under random data (95th percentile) |
 |---|---|---|---|---|
 | PC1 | 2.91 | 41.5% | 41.5% | 1.41 |
 | PC2 | 1.36 | 19.5% | 61.0% | 1.24 |
@@ -28,18 +28,22 @@ Variables were prepared in the variable preparation notebook (Kiet Ly). See [Myl
 | PC4 | 0.86 | 12.3% | 87.7% | 1.05 |
 | PC5 | 0.52 | 7.4% | 95.1% | 0.97 |
 
+![Scree plot](figures/Screeplot.png)
+
+![Cumulative variance](figures/CumulativeExplainedVariance.png)
+
 2 principal components were retained (61.0% variance). Using parallel analysis with 1,000 permutations (seed 42), PC1 and PC2 are higher than would be expected with random data of the same shape. PC3 (1.01) is not (random data =1.13). Based on the Kaiser criterion (eigenvalues above 1), 3 components would be retained, however PC3 is barely above 1 (by 0.007). If 70% or 80% variance was desired, 3 or 4 would be required. To avoid retaining a component with no greater variance than expected by chance, 2 components were retained despite 39% variance loss. If 3 components are retained (PC3), this can be compared in the clustering stage.
 
 ### 4.2 Component Loadings
 
-![Scree plot](figures/Screeplot.png) · ![Cumulative variance](figures/CumulativeExplainedVariance.png)
+![Loadings heatmap](figures/Componetloadings.png)
 
-
+Loadings represent the correlation between variables and PC1/PC2.
 
 | Component | High Loadings | Interpretation |
 |---|---|---|
 | PC1 (41.5%) | Bar/nightclub (per km²) (+0.92), total licenses (+0.91), dance licenses (+0.90), Metro (+0.46) | High density of alcohol licenses and Metro stations (intense night-life/commercial activity). Time of crime has low loadings (Weekend: +0.33, Midnight: +0.31). |
-| PC2 (19.5%) | Evening (+0.81), Midnight (-0.79) | Daytime peak (high) Vs Late-night (low). Little loading from license density (≤ 0.23). |
+| PC2 (19.5%) | Evening (+0.81), Midnight (-0.79) | Evening peak (high) vs late-night (low). Little loading from license density (≤ 0.23). |
 
 PC1 and PC2 are orthogonal. The level of alcohol and transport activity in a tract and time of crime are largely independent factors.
 
@@ -53,8 +57,20 @@ PC1 and PC2 are orthogonal. The level of alcohol and transport activity in a tra
 **Results**
 
 - License density is not predictive of late-night times. There is weak correlation between midnight proportion and bar/nightclub density (r=0.17) and total license density (r=0.09). For tracts in the top quartile of bar density, median midnight proportion is 19.3%. But for tracts in the bottom quartile, median midnight proportion is 18.9%.
-- Some high nightlife density tracts have high late-night crime (44.02, 107, 55.02, midnight proportion 37-38%). Others do not (58.01, 38.02, 52.02 have high license densities, but are peak daytime).
-- Other variables correlate with PC1 (Spearman correlation). Gun involvement (-0.38), violent crime (-0.29), Incidents per 1000 people (+0.39), Population density (+0.42), median income (+0.32), and poverty (-0.25). For tracts in the top quartile of bar density, median violent crime is 8.0%, and 15.3% in bottom quartile. Correlations with PC2 are weak (|r| ≤ 0.23). [Full Correlation Table with Context Variables](outputs/context_correlations.csv).
+- Some high nightlife density tracts have high late-night crime (44.02, 107, 55.02, midnight proportion 37-38%). Others do not (58.01, 38.02, 52.02 have high license densities, but are evening-peak).
+- Other variables correlate with PC1 (Spearman correlation). Gun involvement (-0.38), violent crime (-0.29), Incidents per 1000 people (+0.39), Population density (+0.42), median income (+0.32), and poverty (-0.25). For tracts in the top quartile of bar density, median violent crime is 8.0%, and 15.3% in bottom quartile. Correlations with PC2 are weak (|r| ≤ 0.23).
+
+| Context variable | PC1 | PC2 | Missing tracts |
+|---|---|---|---|
+| Violent-crime share | -0.29 | -0.14 | 0 |
+| Gun-involved share | -0.38 | -0.21 | 0 |
+| Incidents per 1,000 residents | +0.39 | +0.15 | 0 |
+| Median age | -0.14 | +0.08 | 1 |
+| Poverty rate | -0.25 | -0.22 | 0 |
+| Renter share | +0.12 | 0.00 | 2 |
+| Transit commute share | -0.15 | -0.04 | 0 |
+| Population density | +0.42 | +0.19 | 0 |
+| Median household income | +0.32 | +0.23 | 8 |
 
 ### 4.3 Biplot
 
@@ -64,14 +80,14 @@ Each dot corresponds to a tract. The colour indicates proportion of violent crim
 
 - The 3 license variables and metro station have positive loadings on PC1 (to the right).
 - Evening has a positive loading on PC2 (upwards), and midnight has negative loading on PC2 (downwards).
-- Tracts in the top-right corner of the biplot (44.02, 55.02, 56.01) have high license density and late-night crime.
+- Tracts in the bottom-right corner of the biplot (44.02, 55.02, 56.01) have high license density and late-night crime.
 - Tracts with a darker colour (more violent crime) are predominantly found on the left-hand side of the biplot, i.e. in tracts with low license density.
 
 No clusters are identified from the PCA. Although some grouping of points appears to occur, true clusters in the data can only be identified after applying a clustering method. Therefore, these cannot be called clusters.
 
 ### 4.4 Robustness
 
-Changing the minimum number of incidents in a tract to 20 or 50, removing the outlier or removing dance license density has very little effect on the results (PC1 and PC2). The loadings have high congruence (0.97-1.00). A PCA using just time of incidents results in a completely different pattern and is not comparable. Adding the license variables therefore provides additional information. 
+Changing the minimum number of incidents in a tract to 20 or 50, removing the outlier or removing dance license density has very little effect on the results (PC1 and PC2). The loadings have high congruence (0.97-1.00). A PCA using just time of incidents results in a completely different pattern and is not comparable. Adding the license variables therefore provides additional information.
 
 ### 4.5 Extended Analysis (16 variables)
 
@@ -79,21 +95,8 @@ To check robustness, the proportion of offences, incidence rate and ACS resident
 
 - **PC1 (24.0%):** Disadvantaged/violent mixes vs commercial areas
 - **PC2 (14.4%):** young renters/weekend vs old residential areas
-- **PC3 (10.2%):** late-night vs daytime
+- **PC3 (10.2%):** late-night vs evening
 - **PC4 (9.6%):** high residential density vs metro served areas
 
-This supports the same conclusion, that late-night time of crime is independent of license density. However, as the additional variables included in this analysis are those we wish to retain for classification, this has not been used as the main analysis. Plots and tables can be seen in figures/extended/ and outputs/extended/.
+This supports the same conclusion, that late-night time of crime is largely unrelated to license density. However, as the additional variables included in this analysis are those we wish to retain for classification, this has not been used as the main analysis. Plots and tables can be seen in figures/extended/ and outputs/extended/.
 
-## 5. Limitations and Next Steps
-
-**Limitations:**
-
-- Only correlation. 174 tracts included (out of 206). Tracts not included have very little recorded crime, meaning conclusions are based on tracts with more recorded crime.
-- PC1 is largely dominated by one factor (license density). The 3 license densities have a high correlation (0.78-0.87).
-- Noise in small tracts. Several extreme late-night values in small tracts (74.01, 56.01, 96.04), with only 32-35 well timed incidents. PC2 is robust (minimum 50 incidents, congruence 0.97), but the position of single tracts may not be accurate.
-- Tract 9800 (17 residents, National Mall) has been included in the analysis. Densities are calculated per km², not per people. Therefore, it is not an outlier.
-- Mixed time periods. Crime in 2025, ACS in 2020-2024, licenses in 2026, metro in 2016. 8 tracts (out of 174) have no median income.
-
-**Next Steps:**
-
-Cluster the 2 principal component scores ([scores](outputs/pca_scores_retained.csv)). Compare with 3 component version. A decision tree will be created to explain clusters, using the excluded variables (violent crime proportion and ACS variables). As these variables were excluded, this explanation is independent from the variables used to create clusters.
