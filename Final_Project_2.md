@@ -53,14 +53,11 @@ All 113 entrances are in census tracts (45 with entrances). Longitude and latitu
 ### ACS (Tract -> Tract)
 ACS table has one row per tract, so aggregation is not needed. We used its ACS columns (population, density, median household income, median age, poverty rate, renter share, transit-commute share). 
 
+## 2. Refine the Research Question and Identify an Audience
 
+### 1. Revise Research Question
 
+#### Current Research Question: Are there 
 
-
-
-
-  
-## 2. Collect Data
-   ACS
 
 ## 3. Spatial Join
