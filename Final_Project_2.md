@@ -122,7 +122,7 @@ Variables were prepared in the variable preparation notebook. See [Myles_Kiet_DC
 
 ### 4.2 Component Loadings
 
-![Loadings heatmap](figures/Componetloadings.png)
+![Loadings heatmap](figures/Componentloadings.png)
 
 Loadings represent the correlation between variables and PC1/PC2.
 
