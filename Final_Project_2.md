@@ -9,7 +9,10 @@ Our main dataset is the 2025 DC crime incident file. We integrated it with two s
 | Census Tracts in 2020 | DC Open Data |1 tract ploygon | Geography for the combinations, 2020 population, housing units, and land area |
 |---|---|---|---|
 
-### 2
+### 2. What each row represents
+In the integrated dataset, one row represents one 2020 census tract in Washington, D.C. There are 206 rows, and every variable defines that tract's: timing and combination of its 2025 crime, the number of alcohol licenses and Metro entrances within it, and its population, ACS demographics, and land area. 
+
+###3 
    Create a table with all the census tracts and create new variables, like: Share of Violent crimes, Theft, Property damage, or etc.
    Can also include temporal variables, like: Times: Evening, Midnight, Daytime.
    Create an Excel file that includes all ~200+ census tracts.
