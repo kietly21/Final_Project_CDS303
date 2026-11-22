@@ -18,7 +18,10 @@ The datasets are connected through the location where:
 - Each license, incident, Metro entrance is allocated to a tract by spatial join against the 2020 tract polygons.
 - The tract's GEOID (census identifier: 11001 + 6-digit tract code) is the merge key. The ACS table is combined with the same GEOID and the tract code is the last 6 digits of FIPS code.
 - GEOID is utilized only to merge and name rows.
-  
+
+The crime file's CENSUS_TRACT column is not used because incidents within a tract polygon only agree with the 2020 polygons for about 82% and for 77 of 206 tracts. Additionally, the incident count varies by more than 20% between the two methods. Since the alcohol, Metro, population, and ACS data all lie on the 2020 polygons, and using it would merge conflicting geographic units.
+
+
 
 
 
