@@ -57,7 +57,26 @@ ACS table has one row per tract, so aggregation is not needed. We used its ACS c
 
 ### 1. Revise Research Question
 
-#### Current Research Question: Are there 
+#### Current Research Question: Are there "nightlife" type areas where crime concentrates late at night, and how do they differ from areas with daytime-dominant crime?
+
+#### Refined Research Question: Across Washington, D.C's census tracts, are there "nightlife-type" tracts, where a large amount of 2025 crime starts late at night (11:00 PM to 7:00 AM) and which also have a high concentration of bars, nightclubs, alcohol licensed venues, and Metro entrances, and how do they differ from daytime-dominant tracts in the kind of crime and in neighborhood characteristics?
+
+### Patterns
+
+| Pattern | Aspects looked at | What it informs us |
+|---|---|---|
+| Nightlife pattern: Late-night share, weekend share, venue, and Metro density increase together across tracts | If these variables load on the same principal component, with the same sign | Nightlife-type candidates: late-night heavy crime and many venues around the same area. |
+| Timing pattern separate from venues: late-night vs. daytime crime creates its own dimension. | If the timing variables load on a component where the venue concentrations have only one factor and have loading near 0. | Late-night crime in a few tracts is not clarified by nightlife venues, so an explanation revolving around venues does not fit those tracts.|
+| What kind of variables drive the variation among tracts | Explained variance of each aspect and the strongest loadings | If the timing, venue concentration, or both are considered, how tracts vary, and how many dimensions are required to explain them. |
+
+### Tracts to compare:
+
+|  | Many Venues | Fewer venues |
+|---|---|---|
+| Late-night heavy crime | Nightlife type | Late-night crime without venues |
+| Daytime-dominant crime | Venues without late-night crime | Daytime-pattern tracts |
+
+
 
 
 ## 3. Spatial Join
